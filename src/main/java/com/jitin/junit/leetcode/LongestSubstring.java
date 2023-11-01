@@ -7,12 +7,14 @@ public class LongestSubstring {
 
 
   public static void main(String[] args) {
-    String sub = "abcdefabsd";// [abcdef, bcdefa, cdefabs, efabsd]
+    String sub = "abccabb";// [abcdef, bcdefa, cdefabs, efabsd]
     System.out.println(bruteLongestSubstring(sub));
 
     System.out.println(lengthOfLongestSubstringArray(sub));
 
     System.out.println(lengthOfLongestSubstring(sub));
+
+    System.out.println(testSubstring(sub));
   }
 
   private static int lengthOfLongestSubstring(String sub) {
@@ -29,6 +31,21 @@ public class LongestSubstring {
     return ans;
 
   }
+
+    private static int testSubstring(String s) {
+      int count =1;
+      int maxCount =0;
+
+      for(int i =0; i< s.length() -1; i++) {
+        if(s.charAt(i) == s.charAt(i+1)) {
+          maxCount = Math.max(maxCount, count);
+          count =0;
+        } else {
+          count++;
+        }
+      }
+      return maxCount;
+    }
 
   private static int lengthOfLongestSubstringArray(String sub) {
     Integer[] chars = new Integer[128];

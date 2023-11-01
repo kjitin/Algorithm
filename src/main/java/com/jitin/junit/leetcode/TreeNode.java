@@ -1,5 +1,8 @@
 package com.jitin.junit.leetcode;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 public class TreeNode {
 
   int val;
@@ -36,6 +39,27 @@ public class TreeNode {
 
   }
 
+  public int maxAncestorDiff(TreeNode root) {
+    if (root == null) {
+      return 0;
+    }
+    return helper(root, root.val, root.val);
+  }
+
+  public int helper(TreeNode node, int curMax, int curMin) {
+    // if encounter leaves, return the max-min along the path
+    if (node == null) {  // 1. node.val =3 | 2. node.val =8 | 3.null | 4. null | 5. node.val =5
+      return curMax - curMin; // 1. 8-3 = 5 | 2. 8 -3 = 5 | 3. 8-3 =5 | 4. 8-3=5 | 5.
+    }
+    // else, update max and min
+    // and return the max of left and right subtrees
+    curMax = Math.max(curMax, node.val);  // 1. curMax=Math.max(3,3)= 3 | curMax=Math.max(3, 8)= 8| curMax = Math.max(3,5) = 5
+    curMin = Math.min(curMin, node.val);  // 1. curMin=Math.min(3,3,)= 3 | curMin=Math.min(3,8) = 3| curMin=Math.min(3,5) = 3
+    int left = helper(node.left, curMax, curMin); // 1.helper --> stack left | 2.helper --> stack left --> stack left| 3.helper -->stack left =5 pop X | 5. helper  reaches top node |
+    int right = helper(node.right, curMax, curMin); // 1.helper --> stack left =5 --> stack -->right|2.helper --> stack left =5 --> stack -->right| 4. helper --> stack left =5 --> pop X right =5 | 6. helper --> stack right
+    return Math.max(left, right); // 1. 5 |
+  }
+
   public boolean hasSum(TreeNode root, int targetSum) {
     target = targetSum;
     return dfs(root, 0);
@@ -59,16 +83,21 @@ public class TreeNode {
   }
 
   public static void main(String[] args) {
-    /*
-         0
+    /*  root
+         1
         / \
-       1    2
+       3    2
              \
               3
              /
             4
+
+        secondRoot
+          3
+         / \
+        8   5
      */
-    TreeNode root = new TreeNode(0, new TreeNode(1), new TreeNode(2));
+    TreeNode root = new TreeNode(1, new TreeNode(3), new TreeNode(2));
     TreeNode leftOf3 = new TreeNode(4);
     root.right.right = new TreeNode(3, leftOf3, null);
     System.out.println(root.left.val);
@@ -77,5 +106,10 @@ public class TreeNode {
     System.out.println(root.maxDepth(root));
     System.out.println(root.hasSum(root, 9));
     System.out.println(root.hasSum(root, 3));
+
+    TreeNode secondRoot = new TreeNode(3, new TreeNode(8), new TreeNode(5));
+    System.out.println(root.maxAncestorDiff(root));
+    System.out.println(secondRoot.maxAncestorDiff(secondRoot));
+    System.out.println("Max Depth "+secondRoot.maxDepth(secondRoot));
   }
 }
