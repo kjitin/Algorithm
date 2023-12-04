@@ -13,7 +13,6 @@ public class BinarySearch {
 
 
     int[] searchArea = {5, 9 , 23 , 45, 56, 58};
-
     public void findNumberUsingBinarySearch(int number) {
         int low =0;
         int high = searchArea.length -1;
@@ -46,7 +45,7 @@ public class BinarySearch {
             }
         }
 
-        
+
 
 
 

@@ -88,7 +88,7 @@ public class TreeNode {
         / \
        3    2
              \
-              3
+              5
              /
             4
 
@@ -98,8 +98,8 @@ public class TreeNode {
         8   5
      */
     TreeNode root = new TreeNode(1, new TreeNode(3), new TreeNode(2));
-    TreeNode leftOf3 = new TreeNode(4);
-    root.right.right = new TreeNode(3, leftOf3, null);
+    TreeNode leftOf5 = new TreeNode(4);
+    root.right.right = new TreeNode(5, leftOf5, null);
     System.out.println(root.left.val);
     System.out.println(root.right.val);
     System.out.println(root.right.right.val);

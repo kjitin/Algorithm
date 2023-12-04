@@ -3,7 +3,7 @@ package com.jitin.junit.udemy;
 public class Main {
 
   public static void main(String[] args) {
-    BinarySearchTree binarySearchTree = new BinarySearchTree();
+    BinarySearchTree binarySearchTree = new BinarySearchTree(false);
 
 
     binarySearchTree.insert(47);

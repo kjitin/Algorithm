@@ -1,11 +1,14 @@
 package com.jitin.junit.educative;
 
+import java.util.Queue;
+
 public class ProductSelf {
 
 
   public static void main(String[] args) {
     int[] arr = {1,2,3,4};
     System.out.println(findProduct(arr));
+
   }
 
   public static int[] findProduct(int arr[])
